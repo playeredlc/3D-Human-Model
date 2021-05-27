@@ -12,6 +12,8 @@ function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({ canvas });
 
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  
   function render() {
     
     // keep propotion while resizing
@@ -21,6 +23,7 @@ function main() {
       camera.updateProjectionMatrix();
     }
     
+    controls.update();
     renderer.render(scene, camera); // draw the scene
     requestAnimationFrame(render);
   }
