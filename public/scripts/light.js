@@ -1,14 +1,12 @@
 class Light {
   
-  constructor(color = 0xFFFFFF, intensity = 1, positionX = -1, positionY = 2, positionZ = 4) {
-    this.color = color;
+  constructor(skyColor=0xffffbb, groundColor=0x080820, intensity=1) {
+    this.skyColor = skyColor;
+    this.groundColor = groundColor;
     this.intensity = intensity;
-    this.positionX = positionX;
-    this.posisitionY = positionY;
-    this.positionZ = positionZ;
 
-    this.light = new THREE.DirectionalLight(this.color, this.intensity);
-    this.light.position.set(positionX, positionY, positionX);
+    this.light = new THREE.HemisphereLight(this.skyColor, this.groundColor, this.intensity);
+
   }
 
   getLight() {

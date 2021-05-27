@@ -2,11 +2,17 @@
 const camera = new Camera().getPerspectiveCamera();
 // scene
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x212121);
+scene.add(new THREE.AxesHelper(500))
 // light
 const light = new Light().getLight();
 scene.add(light);
-// glTF loader
-const loader = new THREE.GLTFLoader();
+
+const myModel = new HumanModel3D('models/female-character-rigs.glb');
+myModel.init(() => {
+  console.log('inside cb');
+  console.log(myModel);
+});
 
 function main() {
   const canvas = document.querySelector('#c');
