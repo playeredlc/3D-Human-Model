@@ -1,5 +1,7 @@
 const generalSettings = {
-  resetPosition: () => { alert('Triggered') },
+  resetPosition: () => { 
+    myModel.modelSkeleton.pose();
+  },
 }
 
 function loadGUI () {
