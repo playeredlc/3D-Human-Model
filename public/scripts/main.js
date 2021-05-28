@@ -10,16 +10,14 @@ scene.add(light);
 // model
 const myModel = new HumanModel3D('models/female-character-rigs.glb');
 myModel.init(() => {
-  console.log('inside cb');
   console.log(myModel);
+  loadGUI();
 });
 
 function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({ canvas });
   const controls = new THREE.OrbitControls(camera, renderer.domElement);
-  
-  loadGUI();
 
   function render() {
     
