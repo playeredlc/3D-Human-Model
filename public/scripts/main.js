@@ -1,3 +1,5 @@
+// canvas size
+let w, h;
 // camera
 const camera = new Camera().getPerspectiveCamera();
 // scene
@@ -19,12 +21,18 @@ function main() {
   const renderer = new THREE.WebGLRenderer({ canvas });
   const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+  renderer.domElement.addEventListener('dblclick', (event) => {
+    addMark( event.clientX, event.clientY );
+  });
+
   function render() {
     
     // keep propotion while resizing
     if(resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      w = canvas.clientWidth;
+      h = canvas.clientHeight;
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
     }
     
