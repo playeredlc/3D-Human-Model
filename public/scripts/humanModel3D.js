@@ -13,6 +13,8 @@ class HumanModel3D {
         this.model = gltf.scene;
         this.model.children[0].children[1].material.color.set( 0x7a78ff );
         this.modelSkeleton = this.model.children[0].children[1].skeleton;
+        const skelHelper = new THREE.SkeletonHelper(this.model);
+        scene.add(skelHelper)
 
         scene.add(this.model);
 
