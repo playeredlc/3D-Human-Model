@@ -26,17 +26,37 @@ function addMark(x, y) {
     map: map,
     color: 'red',
   });
-  
+
   let intersects = raycaster.intersectObject(myModel.model.children[0].children[1]);
   if (intersects.length < 1) return;
-  
+
+
   let intersection = intersects[0];
   let pIntersect = intersection.point.clone();
+  // pIntersect from global to local (mesh)
   myModel.model.children[0].children[1].worldToLocal(pIntersect);
-  
+
   let sprite = new THREE.Sprite(spriteMat);
   sprite.scale.set(0.5, 0.5, 0.5);
-  sprite.position.copy(intersection.face.normal).multiplyScalar(0.05).add(pIntersect);
-  myModel.model.children[0].children[1].add(sprite);
+  sprite.position.add(pIntersect);
+  
+  const distances = calculateDistances(myModel.modelSkeleton.bones, intersection.point); // intersection.point => world position
+  const minIndex = distances.indexOf(Math.min(...distances)) + 1; // index of the nearest bone
+  const boneName = myModel.modelSkeleton.bones[minIndex].name;
 
+  myModel.modelSkeleton.getBoneByName(boneName).attach(sprite);
+
+}
+
+function calculateDistances(bones, point) {
+  const distances = new Array();
+  const boneWorldPos = new THREE.Vector3();
+
+  bones.forEach(bone => {
+    bone.getWorldPosition(boneWorldPos); // bone position from local to world (because point is in relation to world)
+    distances.push(boneWorldPos.distanceTo(point));
+  });
+  
+  distances.shift(); // remove first bone because it is not used;
+  return distances;
 }
