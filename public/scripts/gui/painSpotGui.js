@@ -1,3 +1,4 @@
+const painSpotsArray = new Array();
 const painSpotSettings = {
   addPainSpot: () => { startInsertion(); },
 }
@@ -10,19 +11,35 @@ function initPainSpot(gui) {
 }
 
 // **
-// FUNCTIONS
+// START INSERTION
 // **
 function startInsertion() {
   canvas.classList.add('inserting-pain-spot');
   renderer.domElement.addEventListener('click', handleInsertion);
 }
 
+// **
+// HANDLE INSERTION
+// **
 function handleInsertion(event) {
-  addMark(event.clientX, event.clientY);
+  const result = addMark(event.clientX, event.clientY);
+
   canvas.classList.remove('inserting-pain-spot');
   renderer.domElement.removeEventListener('click', handleInsertion);
+
+  // store insertion
+  if(result.success){
+    const ps = {
+      pIntersect: result.position,
+      boneName: result.boneName,
+    }
+    painSpotsArray.push(ps);
+  }
 }
 
+// **
+// ADD PAIN SPOT
+// **
 function addMark(x, y) {
   
   let mouse = new THREE.Vector2();
@@ -40,7 +57,9 @@ function addMark(x, y) {
 
   let intersects = raycaster.intersectObject(myModel.model.children[0].children[1]);
   if (intersects.length < 1){
-    return false; // not added
+    return {
+      success: false,
+    };
   }
 
   let intersection = intersects[0];
@@ -58,6 +77,9 @@ function addMark(x, y) {
   console.log(boneName);
   myModel.modelSkeleton.getBoneByName(boneName).attach(sprite);
 
-  return true; // added
-
+  return {
+    success: true,
+    boneName: boneName,
+    position: pIntersect,
+  };
 }
