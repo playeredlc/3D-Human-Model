@@ -30,7 +30,7 @@ const headMovements = [
   'Lateral Flexion',
   'Rotation',
 ];
-const TorsoMovements = [
+const torsoMovements = [
   'Extension/Flexion',
   'Lateral Flexion',
 ];

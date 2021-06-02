@@ -1,19 +1,31 @@
 const painSpotsArray = new Array();
+let movementController;
+
 const painSpotSettings = {
   addPainSpot: () => { startInsertion(); },
   bodyPart: 'None',
+  movement: '',
+  movementList: [],
 }
 
 function initPainSpot(gui) {
   const painSpotFolder = gui.addFolder('Pain Spot');
 
   painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add pain spot');
-  painSpotFolder.add(painSpotSettings, 'bodyPart').options(['None', 'Head', 'Torso', 'Upper Limbs', 'Lower Limbs']).name('Select body part').onChange(
-    () => { alert( 'changed to ' + painSpotSettings.bodyPart ) }
-  );
-
+  painSpotFolder
+    .add(painSpotSettings, 'bodyPart')
+    .options(['None', 'Head', 'Torso', 'Upper Limbs', 'Lower Limbs'])
+    .name('Select body part')
+    .onChange(
+      () => {
+        updateAvailableMovements(painSpotSettings.bodyPart, painSpotFolder);
+      }
+    );
 }
 
+function addMovementController() {
+
+}
 // **
 // START INSERTION
 // **
@@ -86,4 +98,57 @@ function addMark(x, y) {
     boneName: boneName,
     position: pIntersect,
   };
+}
+
+// **
+// MOVEMENT LIST ACCORDING TO BODYPART - refactor??
+// **
+function updateAvailableMovements(bodyPart, folder) {
+  switch (bodyPart) {
+    case 'Head':
+      painSpotSettings.movementList = headMovements;
+      painSpotSettings.movement = painSpotSettings.movementList[0];
+      if(movementController) {
+        movementController.remove();
+      }
+      movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
+      break;
+  
+    case 'Torso':
+      painSpotSettings.movementList = torsoMovements;
+      painSpotSettings.movement = painSpotSettings.movementList[0];
+      if(movementController) {
+        movementController.remove();
+      }
+      movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
+      break;
+    
+    case 'Upper Limbs':
+      painSpotSettings.movementList = upperLimbMovements;
+      painSpotSettings.movement = painSpotSettings.movementList[0];
+      if(movementController) {
+        movementController.remove();
+      }
+      movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
+      break;
+  
+    case 'Lower Limbs':
+      painSpotSettings.movementList = lowerLimbMovements;
+      painSpotSettings.movement = painSpotSettings.movementList[0];
+      if(movementController) {
+        movementController.remove();
+      }
+      movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
+      break;
+    case 'None':
+      if(movementController) {
+        movementController.remove();
+        movementController = undefined;
+      }
+      break;
+
+    default:
+      break;
+  }
+
 }
