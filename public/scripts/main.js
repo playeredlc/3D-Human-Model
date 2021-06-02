@@ -16,17 +16,13 @@ myModel.init(() => {
   loadGUI();
 });
 
+const canvas = document.querySelector('#c');
+const renderer = new THREE.WebGLRenderer({ canvas });
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
 function main() {
-  const canvas = document.querySelector('#c');
-  const renderer = new THREE.WebGLRenderer({ canvas });
-  const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-  renderer.domElement.addEventListener('dblclick', (event) => {
-    addMark( event.clientX, event.clientY );
-  });
-
+  
   function render() {
-    
+
     // keep propotion while resizing
     if(resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
