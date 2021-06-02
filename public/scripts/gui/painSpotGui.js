@@ -13,11 +13,13 @@ function initPainSpot(gui) {
 // FUNCTIONS
 // **
 function startInsertion() {
+  canvas.classList.add('inserting-pain-spot');
   renderer.domElement.addEventListener('click', handleInsertion);
 }
 
 function handleInsertion(event) {
   addMark(event.clientX, event.clientY);
+  canvas.classList.remove('inserting-pain-spot');
   renderer.domElement.removeEventListener('click', handleInsertion);
 }
 
@@ -37,8 +39,9 @@ function addMark(x, y) {
   });
 
   let intersects = raycaster.intersectObject(myModel.model.children[0].children[1]);
-  if (intersects.length < 1) return;
-
+  if (intersects.length < 1){
+    return false; // not added
+  }
 
   let intersection = intersects[0];
   let pIntersect = intersection.point.clone();
@@ -54,5 +57,7 @@ function addMark(x, y) {
   const boneName = myModel.modelSkeleton.bones[minIndex].name;
   console.log(boneName);
   myModel.modelSkeleton.getBoneByName(boneName).attach(sprite);
+
+  return true; // added
 
 }
