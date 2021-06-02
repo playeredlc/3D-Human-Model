@@ -24,3 +24,21 @@ function calculateDistances(bones, point) {
   distances.shift(); // remove first bone because it is not used;
   return distances;
 }
+
+const headMovements = [
+  'Extension/Flexion',
+  'Lateral Flexion',
+  'Rotation',
+];
+const TorsoMovements = [
+  'Extension/Flexion',
+  'Lateral Flexion',
+];
+const upperLimbMovements = [
+  'Extension/Flexion',
+  'Adduction/Abduction',
+];
+const lowerLimbMovements = [
+  'Hip Ext/Flex',
+  'Knee Ext/Flex',
+];

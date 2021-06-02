@@ -22,6 +22,6 @@ function initTorso(gui) {
   const torsoFolder = gui.addFolder('Torso');
   
   torsoFolder.add(torsoSettings, 'extFlexAmount', -1, 1, 0.01).onChange(() => { torsoSettings.extFlexTorso() }).name('Extension/Flexion');
-  torsoFolder.add(torsoSettings, 'latExtAmount', -0.26, 0.26, 0.01).onChange(() => { torsoSettings.latExtTorso() }).name('Lateral Extension');
+  torsoFolder.add(torsoSettings, 'latExtAmount', -0.26, 0.26, 0.01).onChange(() => { torsoSettings.latExtTorso() }).name('Lateral Flexion');
 
 }

@@ -1,12 +1,16 @@
 const painSpotsArray = new Array();
 const painSpotSettings = {
   addPainSpot: () => { startInsertion(); },
+  bodyPart: 'None',
 }
 
 function initPainSpot(gui) {
   const painSpotFolder = gui.addFolder('Pain Spot');
 
   painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add pain spot');
+  painSpotFolder.add(painSpotSettings, 'bodyPart').options(['None', 'Head', 'Torso', 'Upper Limbs', 'Lower Limbs']).name('Select body part').onChange(
+    () => { alert( 'changed to ' + painSpotSettings.bodyPart ) }
+  );
 
 }
 
