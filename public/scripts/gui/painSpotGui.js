@@ -9,18 +9,19 @@ const painSpotSettings = {
 }
 
 function initPainSpot(gui) {
-  const painSpotFolder = gui.addFolder('Pain Spot');
+  const painSpotFolder = gui.addFolder('Insert Pain Spot');
+  const painMovFolder = painSpotFolder.addFolder('Set movement causing the pain');
 
-  painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add pain spot');
-  painSpotFolder
-    .add(painSpotSettings, 'bodyPart')
-    .options(['None', 'Head', 'Torso', 'Upper Limb', 'Lower Limb'])
-    .name('Select body part')
-    .onChange(
-      () => {
-        updateAvailableMov(painSpotSettings.bodyPart, painSpotFolder);
-      }
+  painMovFolder
+  .add(painSpotSettings, 'bodyPart')
+  .options(['None', 'Head', 'Torso', 'Upper Limb', 'Lower Limb'])
+  .name('Select body part')
+  .onChange(
+    () => {
+      updateAvailableMov(painSpotSettings.bodyPart, painMovFolder);
+    }
     );
+  painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add pain spot');
 }
 
 function addMovementController() {
