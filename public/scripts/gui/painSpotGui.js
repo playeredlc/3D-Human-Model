@@ -1,10 +1,11 @@
-const tempPainSpots = new Array();
+let tempPainSpots = new Array();
 const savedPainSpots = new Array();
 let movementController;
 
 const painSpotSettings = {
   addPainSpot: () => { startInsertion(); },
   removeLastPainSpot: () => { removeLastMark(); },
+  savePainSpot: () => { savePs(); console.log(savedPainSpots); },
   bodyPart: 'None',
   movement: '',
   movementList: [],
@@ -13,6 +14,8 @@ const painSpotSettings = {
 function initPainSpot(gui) {
   const painSpotFolder = gui.addFolder('Insert Pain Spot');
   const painMovFolder = painSpotFolder.addFolder('Set movement causing the pain');
+  painMovFolder.open();
+  
   
   painMovFolder
   .add(painSpotSettings, 'bodyPart')
@@ -23,9 +26,12 @@ function initPainSpot(gui) {
       updateAvailableMov(painSpotSettings.bodyPart, painMovFolder);
     }
     );
-  
-    painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add pain spot');
-    painSpotFolder.add(painSpotSettings, 'removeLastPainSpot').name('Remove last inserted pain spot');
+    
+  painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add mark');
+  painSpotFolder.add(painSpotSettings, 'removeLastPainSpot').name('Remove last mark');
+  painSpotFolder.add(painSpotSettings, 'savePainSpot').name('Save');
+
+
 }
 
 // **
@@ -48,10 +54,10 @@ function handleInsertion(event) {
   // store insertion
   if(result.success){
     const ps = {
-      pIntersect: result.position,
+      position: result.position,
       boneName: result.boneName,
       bodyPart: painSpotSettings.bodyPart,
-      movement: painSpotSettings.movementList,
+      movement: painSpotSettings.movement,
     }
     tempPainSpots.push(ps);
   }
@@ -104,12 +110,31 @@ function addMark(x, y) {
   };
 }
 
+//**
+// REMOVE LAST INSERTED PAIN SPOT 
+//**
 function removeLastMark() {
   if(tempPainSpots.length > 0) {
     const removedPs = tempPainSpots.pop();
     myModel.modelSkeleton.getBoneByName(removedPs.boneName).children.pop();
   } else {
-    alert('no more pain spots');
+    alert('No more pain spots');
+  }
+}
+
+//**
+// SAVE
+//**
+function savePs() {
+  if(tempPainSpots.length > 0) {
+    savedPainSpots.push(Array.from(tempPainSpots));
+    for(i=0; i<tempPainSpots.length; i++) {
+      const removedPs = tempPainSpots.pop();
+      myModel.modelSkeleton.getBoneByName(removedPs.boneName).children.pop();
+    }
+    tempPainSpots = [];
+  } else {
+    alert('No pain spots')
   }
 }
 
