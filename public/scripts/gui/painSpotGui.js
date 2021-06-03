@@ -14,11 +14,11 @@ function initPainSpot(gui) {
   painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add pain spot');
   painSpotFolder
     .add(painSpotSettings, 'bodyPart')
-    .options(['None', 'Head', 'Torso', 'Upper Limbs', 'Lower Limbs'])
+    .options(['None', 'Head', 'Torso', 'Upper Limb', 'Lower Limb'])
     .name('Select body part')
     .onChange(
       () => {
-        updateAvailableMovements(painSpotSettings.bodyPart, painSpotFolder);
+        updateAvailableMov(painSpotSettings.bodyPart, painSpotFolder);
       }
     );
 }
@@ -101,54 +101,20 @@ function addMark(x, y) {
 }
 
 // **
-// MOVEMENT LIST ACCORDING TO BODYPART - refactor??
+// MOVEMENT LIST ACCORDING TO BODYPART
 // **
-function updateAvailableMovements(bodyPart, folder) {
-  switch (bodyPart) {
-    case 'Head':
-      painSpotSettings.movementList = headMovements;
-      painSpotSettings.movement = painSpotSettings.movementList[0];
-      if(movementController) {
-        movementController.remove();
-      }
-      movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
-      break;
-  
-    case 'Torso':
-      painSpotSettings.movementList = torsoMovements;
-      painSpotSettings.movement = painSpotSettings.movementList[0];
-      if(movementController) {
-        movementController.remove();
-      }
-      movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
-      break;
-    
-    case 'Upper Limbs':
-      painSpotSettings.movementList = upperLimbMovements;
-      painSpotSettings.movement = painSpotSettings.movementList[0];
-      if(movementController) {
-        movementController.remove();
-      }
-      movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
-      break;
-  
-    case 'Lower Limbs':
-      painSpotSettings.movementList = lowerLimbMovements;
-      painSpotSettings.movement = painSpotSettings.movementList[0];
-      if(movementController) {
-        movementController.remove();
-      }
-      movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
-      break;
-    case 'None':
-      if(movementController) {
-        movementController.remove();
-        movementController = undefined;
-      }
-      break;
-
-    default:
-      break;
+function updateAvailableMov(bodyPart, folder) {  
+  if(bodyPart === 'None') {
+    if(movementController) {
+      movementController.remove();
+      movementController = undefined;
+    }
+  } else {
+    painSpotSettings.movementList = movements[_.camelCase(bodyPart)];
+    painSpotSettings.movement = painSpotSettings.movementList[0];
+    if(movementController) {
+      movementController.remove();
+    }
+    movementController = folder.add(painSpotSettings, 'movement').options(painSpotSettings.movementList).name('Select Movement');
   }
-
 }

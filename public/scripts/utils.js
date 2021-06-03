@@ -42,3 +42,23 @@ const lowerLimbMovements = [
   'Hip Ext/Flex',
   'Knee Ext/Flex',
 ];
+
+const movements = {
+  head: [
+    'Extension/Flexion',
+    'Lateral Flexion',
+    'Rotation',
+  ],
+  torso: [
+    'Extension/Flexion',
+    'Lateral Flexion',
+  ],
+  upperLimb: [
+    'Extension/Flexion',
+    'Adduction/Abduction',
+  ],
+  lowerLimb: [
+    'Hip Ext/Flex',
+    'Knee Ext/Flex',
+  ],
+}
