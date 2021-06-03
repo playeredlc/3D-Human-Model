@@ -1,8 +1,10 @@
-const painSpotsArray = new Array();
+const tempPainSpots = new Array();
+const savedPainSpots = new Array();
 let movementController;
 
 const painSpotSettings = {
   addPainSpot: () => { startInsertion(); },
+  removeLastPainSpot: () => { removeLastMark(); },
   bodyPart: 'None',
   movement: '',
   movementList: [],
@@ -11,7 +13,7 @@ const painSpotSettings = {
 function initPainSpot(gui) {
   const painSpotFolder = gui.addFolder('Insert Pain Spot');
   const painMovFolder = painSpotFolder.addFolder('Set movement causing the pain');
-
+  
   painMovFolder
   .add(painSpotSettings, 'bodyPart')
   .options(['None', 'Head', 'Torso', 'Upper Limb', 'Lower Limb'])
@@ -21,12 +23,11 @@ function initPainSpot(gui) {
       updateAvailableMov(painSpotSettings.bodyPart, painMovFolder);
     }
     );
-  painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add pain spot');
+  
+    painSpotFolder.add(painSpotSettings, 'addPainSpot').name('Add pain spot');
+    painSpotFolder.add(painSpotSettings, 'removeLastPainSpot').name('Remove last inserted pain spot');
 }
 
-function addMovementController() {
-
-}
 // **
 // START INSERTION
 // **
@@ -49,8 +50,10 @@ function handleInsertion(event) {
     const ps = {
       pIntersect: result.position,
       boneName: result.boneName,
+      bodyPart: painSpotSettings.bodyPart,
+      movement: painSpotSettings.movementList,
     }
-    painSpotsArray.push(ps);
+    tempPainSpots.push(ps);
   }
 }
 
@@ -99,6 +102,15 @@ function addMark(x, y) {
     boneName: boneName,
     position: pIntersect,
   };
+}
+
+function removeLastMark() {
+  if(tempPainSpots.length > 0) {
+    const removedPs = tempPainSpots.pop();
+    myModel.modelSkeleton.getBoneByName(removedPs.boneName).children.pop();
+  } else {
+    alert('no more pain spots');
+  }
 }
 
 // **
