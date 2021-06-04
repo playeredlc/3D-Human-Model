@@ -1,7 +1,9 @@
 let psViewController;
 let viewPainSpotFolder;
 const viewPainSpotSettings = {
+  isViewing: false,
   total: 0,
+  actualIndex: undefined,
   painSpotList: new Array(),
   selectPainSpot: '',
   view: () => { remakePainSpot() }

@@ -131,25 +131,51 @@ function updatePsCount(){
   updatePsViewController();
 }
 
+function discardUnsavedChanges() {
+  if(tempPainSpots.length > 0) {
+    // discard unsaved changes
+    for(i=0; i<tempPainSpots.length; i++) {
+      removeLastMark();
+    }
+  }
+}
+
+//**
+// MANAGE VIEWING MODE
+//**
+function startViewingMode() {
+  if(!viewPainSpotSettings.selectPainSpot) {
+    alert('Select pain spot!')
+  } else {
+    viewPainSpotSettings.isViewing = true;
+    discardUnsavedChanges();
+    remakePainSpot();
+  }
+}
+function quitViewingMode() {
+
+}
+
 //**
 // RE-INSERT A SAVED PAIN SPOT
 //**
 function remakePainSpot() {
-  if(!viewPainSpotSettings.selectPainSpot) {
-    alert('Select pain spot!')
-  } else {
-    if(tempPainSpots.length > 0) {
-      // discard unsaved changes
-      for(i=0; i<tempPainSpots.length; i++) {
-        removeLastMark();
-      }
-    }
-    const index = viewPainSpotSettings.painSpotList.indexOf(viewPainSpotSettings.selectPainSpot);
-    const ps = savedPainSpots[index];
-    let sprite;
-    ps.forEach(painMark => {
-      sprite = createSprite(painMark.position);
-      attachSpriteToBone(sprite, painMark.boneName);
-    });
-  }
+  const selectedIndex = viewPainSpotSettings.painSpotList.indexOf(viewPainSpotSettings.selectPainSpot);
+  const ps = savedPainSpots[selectedIndex];
+  
+  viewPainSpotSettings.actualIndex = selectedIndex;
+  let sprite;
+  
+  ps.forEach(painMark => {
+    sprite = createSprite(painMark.position);
+    attachSpriteToBone(sprite, painMark.boneName);
+  });
+
+}
+
+//**
+//
+//**
+function removePainSpot() {
+  
 }
