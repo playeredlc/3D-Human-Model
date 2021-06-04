@@ -25,24 +25,6 @@ function calculateDistances(bones, point) {
   return distances;
 }
 
-const headMovements = [
-  'Extension/Flexion',
-  'Lateral Flexion',
-  'Rotation',
-];
-const torsoMovements = [
-  'Extension/Flexion',
-  'Lateral Flexion',
-];
-const upperLimbMovements = [
-  'Extension/Flexion',
-  'Adduction/Abduction',
-];
-const lowerLimbMovements = [
-  'Hip Ext/Flex',
-  'Knee Ext/Flex',
-];
-
 const movements = {
   head: [
     'Extension/Flexion',
