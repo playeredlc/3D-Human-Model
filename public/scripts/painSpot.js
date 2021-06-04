@@ -95,7 +95,7 @@ function removeLastMark() {
 function savePs() {
   if(tempPainSpots.length > 0) {
     savedPainSpots.push(Array.from(tempPainSpots));
-    for(i=0; i<tempPainSpots.length; i++) {
+    for(i=0; i<=tempPainSpots.length; i++) {
       const removedPs = tempPainSpots.pop();
       myModel.modelSkeleton.getBoneByName(removedPs.boneName).children.pop();
     }
