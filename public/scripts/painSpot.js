@@ -95,6 +95,7 @@ function removeLastMark() {
 function savePs() {
   if(tempPainSpots.length > 0) {
     savedPainSpots.push(Array.from(tempPainSpots));
+    updatePsCount();
     for(i=0; i<=tempPainSpots.length; i++) {
       const removedPs = tempPainSpots.pop();
       myModel.modelSkeleton.getBoneByName(removedPs.boneName).children.pop();
@@ -103,4 +104,15 @@ function savePs() {
   } else {
     alert('No pain spots')
   }
+}
+
+//**
+// UPDATE PAIN SPOT LIST
+//**
+function updatePsCount(){
+  viewPainSpotSettings.total++;
+  const psName = 'Pain Spot ' + (viewPainSpotSettings.total);
+  viewPainSpotSettings.painSpotList.push(psName);
+  viewPainSpotSettings.selectPainSpot = viewPainSpotSettings.painSpotList[0];
+  updatePsViewController();
 }
