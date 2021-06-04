@@ -14,4 +14,5 @@ function loadGUI () {
   initUpperLimb(gui);
   initLowerLimb(gui);
   initInsertPainSpot(gui);
+  initViewPainSpot(gui);
 }
