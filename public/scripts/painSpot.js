@@ -144,6 +144,10 @@ function discardUnsavedChanges() {
 // MANAGE VIEWING MODE
 //**
 function startViewingMode() {
+  if(viewPainSpotSettings.isViewing === true) {
+    quitViewingMode();
+  }
+
   if(!viewPainSpotSettings.selectPainSpot) {
     alert('Select pain spot!')
   } else {
@@ -153,7 +157,8 @@ function startViewingMode() {
   }
 }
 function quitViewingMode() {
-
+  removePainSpot();
+  viewPainSpotSettings.isViewing = false;
 }
 
 //**
@@ -162,7 +167,7 @@ function quitViewingMode() {
 function remakePainSpot() {
   const selectedIndex = viewPainSpotSettings.painSpotList.indexOf(viewPainSpotSettings.selectPainSpot);
   const ps = savedPainSpots[selectedIndex];
-  
+
   viewPainSpotSettings.actualIndex = selectedIndex;
   let sprite;
   
@@ -170,12 +175,22 @@ function remakePainSpot() {
     sprite = createSprite(painMark.position);
     attachSpriteToBone(sprite, painMark.boneName);
   });
-
 }
 
 //**
-//
+// REMOVE ALL PAIN MARKS
 //**
 function removePainSpot() {
-  
+  if(viewPainSpotSettings.isViewing) {
+    const ps = savedPainSpots[viewPainSpotSettings.actualIndex];
+    let bone;
+    ps.forEach(painMark => {
+      bone = myModel.modelSkeleton.getBoneByName(painMark.boneName);
+      bone.children.forEach((object, index) => {
+        if(object.type === "Sprite") {
+          bone.children.splice(index, 1);
+        }
+      });
+    });
+  }
 }
