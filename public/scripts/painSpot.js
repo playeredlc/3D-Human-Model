@@ -41,12 +41,6 @@ function addMark(x, y) {
 
   const raycaster = new THREE.Raycaster();
   raycaster.setFromCamera(mouse, camera);
-  
-  const map = new THREE.TextureLoader().load('/textures/spark1.png');
-  var spriteMat = new THREE.SpriteMaterial({
-    map: map,
-    color: 'red',
-  });
 
   let intersects = raycaster.intersectObject(myModel.model.children[0].children[1]);
   if (intersects.length < 1){
@@ -60,21 +54,41 @@ function addMark(x, y) {
   // pIntersect from global to local (mesh)
   myModel.model.children[0].children[1].worldToLocal(pIntersect);
 
-  let sprite = new THREE.Sprite(spriteMat);
-  sprite.scale.set(0.5, 0.5, 0.5);
-  sprite.position.add(pIntersect);
+  let sprite = createSprite(pIntersect);
   
-  const distances = calculateDistances(myModel.modelSkeleton.bones, intersection.point); // intersection.point => world position
-  const minIndex = distances.indexOf(Math.min(...distances)) + 1; // index of the nearest bone
+  const { minIndex } = calculateDistances(myModel.modelSkeleton.bones, intersection.point); // intersection.point => world position
   const boneName = myModel.modelSkeleton.bones[minIndex].name;
-  console.log(boneName);
-  myModel.modelSkeleton.getBoneByName(boneName).attach(sprite);
+  attachSpriteToBone(sprite, boneName);
 
   return {
     success: true,
     boneName: boneName,
     position: pIntersect,
   };
+}
+
+//**
+// ADD SPRITE TO BONE
+//**
+function attachSpriteToBone(sprite, boneName) {
+  myModel.modelSkeleton.getBoneByName(boneName).attach(sprite);
+}
+
+//**
+// CREATE SPRITE
+//**
+function createSprite(localPosition) {
+  const map = new THREE.TextureLoader().load('/textures/spark1.png');
+  var spriteMat = new THREE.SpriteMaterial({
+    map: map,
+    color: 'red',
+  });
+
+  let sprite = new THREE.Sprite(spriteMat);
+  sprite.scale.set(0.5, 0.5, 0.5);
+  sprite.position.add(localPosition);
+
+  return sprite;
 }
 
 //**
@@ -115,4 +129,27 @@ function updatePsCount(){
   viewPainSpotSettings.painSpotList.push(psName);
   viewPainSpotSettings.selectPainSpot = viewPainSpotSettings.painSpotList[0];
   updatePsViewController();
+}
+
+//**
+// RE-INSERT A SAVED PAIN SPOT
+//**
+function remakePainSpot() {
+  if(!viewPainSpotSettings.selectPainSpot) {
+    alert('Select pain spot!')
+  } else {
+    if(tempPainSpots.length > 0) {
+      // discard unsaved changes
+      for(i=0; i<tempPainSpots.length; i++) {
+        removeLastMark();
+      }
+    }
+    const index = viewPainSpotSettings.painSpotList.indexOf(viewPainSpotSettings.selectPainSpot);
+    const ps = savedPainSpots[index];
+    let sprite;
+    ps.forEach(painMark => {
+      sprite = createSprite(painMark.position);
+      attachSpriteToBone(sprite, painMark.boneName);
+    });
+  }
 }

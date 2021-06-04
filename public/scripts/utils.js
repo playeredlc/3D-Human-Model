@@ -22,7 +22,10 @@ function calculateDistances(bones, point) {
   });
   
   distances.shift(); // remove first bone because it is not used;
-  return distances;
+  return { 
+    distances: distances,
+    minIndex: distances.indexOf(Math.min(...distances)) + 1, 
+  }
 }
 
 const movements = {
