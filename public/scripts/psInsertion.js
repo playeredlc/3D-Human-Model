@@ -5,6 +5,7 @@ const savedPainSpots = new Array();
 // START INSERTION
 // **
 function startInsertion() {
+  myModel.modelSkeleton.pose();
   canvas.classList.add('inserting-pain-spot');
   renderer.domElement.addEventListener('click', handleInsertion);
 }
@@ -34,7 +35,6 @@ function handleInsertion(event) {
 // ADD PAIN MARK
 // **
 function addMark(x, y) {
-  
   let mouse = new THREE.Vector2();
   mouse.x = ( x / w ) * 2 - 1;
 	mouse.y = - ( y / h ) * 2 + 1;

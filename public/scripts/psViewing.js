@@ -49,6 +49,8 @@ function remakePainSpot() {
   viewPainSpotSettings.actualIndex = selectedIndex;
   let sprite;
   
+  myModel.modelSkeleton.pose();
+
   ps.forEach(painMark => {
     sprite = createSprite(painMark.position);
     attachSpriteToBone(sprite, painMark.boneName);
