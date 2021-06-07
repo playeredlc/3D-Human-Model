@@ -3,6 +3,8 @@ const torsoSettings = {
   extFlexTorso: () => {
     myModel.modelSkeleton.getBoneByName('upper_armR').rotation.z = Math.PI;
     myModel.modelSkeleton.getBoneByName('upper_armL').rotation.z = Math.PI;
+    myModel.modelSkeleton.getBoneByName('forearmR').rotation.x = 0.16; // 10 deg
+    myModel.modelSkeleton.getBoneByName('forearmR').rotation.z = -0.105; // 6 deg
     
     myModel.modelSkeleton.getBoneByName('spine001').rotation.x = torsoSettings.extFlexAmount;
   },
@@ -11,6 +13,8 @@ const torsoSettings = {
   latExtTorso: () => {
     myModel.modelSkeleton.getBoneByName('upper_armR').rotation.z = 2.35; // 135 deg
     myModel.modelSkeleton.getBoneByName('upper_armL').rotation.z = -2.35;
+    myModel.modelSkeleton.getBoneByName('forearmR').rotation.x = 0.16; // 10 deg
+    myModel.modelSkeleton.getBoneByName('forearmR').rotation.z = -0.105; // 6 deg
 
     myModel.modelSkeleton.getBoneByName('spine001').rotation.z = torsoSettings.latExtAmount;
     myModel.modelSkeleton.getBoneByName('spine002').rotation.z = torsoSettings.latExtAmount;
