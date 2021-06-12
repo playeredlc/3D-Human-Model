@@ -2,26 +2,38 @@ const lowerSettings = {
   hip: {
     extFlexAmount: Math.PI,
     extFlexHip: () => {
-      myModel.modelSkeleton.getBoneByName('thighR').rotation.x = lowerSettings.hip.extFlexAmount;
+      if(nowMoving === 'extFlexHip') {
+        myModel.modelSkeleton.getBoneByName('thighR').rotation.x = lowerSettings.hip.extFlexAmount;
+      } else {
+        nowMoving='extFlexHip';
+      }
     },
   },
   
   knee: {
     extFlexAmount: Math.PI/2,
     extFlexKnee: () => {
-      myModel.modelSkeleton.getBoneByName('thighR').rotation.x = Math.PI/2;
-      myModel.modelSkeleton.getBoneByName('shinR').rotation.x = Math.PI/2;
-
-      myModel.modelSkeleton.getBoneByName('shinR').rotation.x = lowerSettings.knee.extFlexAmount;
+      if(nowMoving === 'extFlexKnee') {
+        myModel.modelSkeleton.getBoneByName('shinR').rotation.x = lowerSettings.knee.extFlexAmount;
+      } else {
+        nowMoving='extFlexKnee';
+        myModel.modelSkeleton.getBoneByName('thighR').rotation.x = Math.PI/2;
+        myModel.modelSkeleton.getBoneByName('shinR').rotation.x = Math.PI/2;
+      }
     },
   },
+
   ankle: {
     plantarFlexAmount: -1.22,
     plantarFlex: () => {
-      myModel.modelSkeleton.getBoneByName('thighR').rotation.x = Math.PI/2;
-      myModel.modelSkeleton.getBoneByName('shinR').rotation.x = Math.PI/2;
+      if(nowMoving === 'plantarFlex') {
+        myModel.modelSkeleton.getBoneByName('footR').rotation.x = lowerSettings.ankle.plantarFlexAmount;
+      } else {
+        nowMoving='plantarFlex';
+        myModel.modelSkeleton.getBoneByName('thighR').rotation.x = Math.PI/2;
+        myModel.modelSkeleton.getBoneByName('shinR').rotation.x = Math.PI/2;
+      }
 
-      myModel.modelSkeleton.getBoneByName('footR').rotation.x = lowerSettings.ankle.plantarFlexAmount;
     }
   },
 }

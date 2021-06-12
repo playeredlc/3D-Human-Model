@@ -1,20 +1,32 @@
 const headSettings = {
   extFlexAmount: 1,
   extFlexHead: () => {
-    myModel.modelSkeleton.getBoneByName('spine004').rotation.x = headSettings.extFlexAmount;  
+    if(nowMoving === 'extFlexHead') {
+      myModel.modelSkeleton.getBoneByName('spine004').rotation.x = headSettings.extFlexAmount;  
+    } else {
+      nowMoving = 'extFlexHead';
+    }
   },
 
   latFlexAmount: 0,
   latFlexHead: () => {
-    myModel.modelSkeleton.getBoneByName('spine004').rotation.z = headSettings.latFlexAmount;
-    myModel.modelSkeleton.getBoneByName('spine005').rotation.z = headSettings.latFlexAmount * 2;
+    if(nowMoving === 'latFlexHead') {
+      myModel.modelSkeleton.getBoneByName('spine004').rotation.z = headSettings.latFlexAmount;
+      myModel.modelSkeleton.getBoneByName('spine005').rotation.z = headSettings.latFlexAmount * 2;
+    } else {
+      nowMoving = 'latFlexHead';
+    }
   },
 
   rotationAmount: 0,
   rotateHead: () => {
-    myModel.modelSkeleton.getBoneByName('spine004').rotation.y = headSettings.rotationAmount;
-    myModel.modelSkeleton.getBoneByName('spine005').rotation.y = headSettings.rotationAmount;
-    myModel.modelSkeleton.getBoneByName('spine006').rotation.y = headSettings.rotationAmount;
+    if(nowMoving === 'rotationHead') {
+      myModel.modelSkeleton.getBoneByName('spine004').rotation.y = headSettings.rotationAmount;
+      myModel.modelSkeleton.getBoneByName('spine005').rotation.y = headSettings.rotationAmount;
+      myModel.modelSkeleton.getBoneByName('spine006').rotation.y = headSettings.rotationAmount;
+    } else {
+      nowMoving = 'rotationHead';
+    }
   },
 }
 
