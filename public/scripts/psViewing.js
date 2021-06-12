@@ -30,6 +30,7 @@ function startViewingMode() {
     alert('Select pain spot!')
   } else {
     viewPainSpotSettings.isViewing = true;
+    controls.autoRotate= true;
     discardUnsavedChanges();
     remakePainSpot();
   }
@@ -37,6 +38,7 @@ function startViewingMode() {
 function quitViewingMode() {
   removePainSpot();
   viewPainSpotSettings.isViewing = false;
+  controls.autoRotate= false;
 }
 
 //**

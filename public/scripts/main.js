@@ -20,7 +20,10 @@ var nowMoving;
 
 const canvas = document.querySelector('#c');
 const renderer = new THREE.WebGLRenderer({ canvas });
+
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.autoRotateSpeed = 10;
+
 function main() {
   
   function render() {
