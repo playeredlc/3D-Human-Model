@@ -37,13 +37,24 @@ const movements = {
   torso: [
     'Extension/Flexion',
     'Lateral Flexion',
+    'Rotation',
   ],
   upperLimb: [
-    'Extension/Flexion',
-    'Adduction/Abduction',
+    'R - Extension/Flexion',
+    'R - Adduction/Abduction',
+    'R - Horizontal Adduction/Abduction',
+    'R - Lateral/Medial Rotation',
+    'L - Extension/Flexion',
+    'L - Adduction/Abduction',
+    'L - Horizontal Adduction/Abduction',
+    'L - Lateral/Medial Rotation',
   ],
   lowerLimb: [
-    'Hip Ext/Flex',
-    'Knee Ext/Flex',
+    'R - Hip Ext/Flex',
+    'R - Knee Ext/Flex',
+    'R - Plantar/Dorsiflexion',
+    'L - Hip Ext/Flex',
+    'L - Knee Ext/Flex',
+    'L - Plantar/Dorsiflexion',
   ],
 }
