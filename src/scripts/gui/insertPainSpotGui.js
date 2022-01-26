@@ -2,7 +2,7 @@ let movementController;
 const painSpotSettings = {
   addPainSpot: () => { startInsertion(); },
   removeLastPainSpot: () => { removeLastMark(); },
-  savePainSpot: () => { savePs(); console.log(savedPainSpots); },
+  savePainSpot: () => { savePs(); },
   bodyPart: 'None',
   movement: '',
   movementList: [],

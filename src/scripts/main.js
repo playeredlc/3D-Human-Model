@@ -12,7 +12,6 @@ scene.add(light);
 // model
 const myModel = new HumanModel3D('src/models/female-character-rigs.glb');
 myModel.init(() => {
-  console.log(myModel);
   loadGUI();
 });
 // movement controller
