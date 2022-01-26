@@ -71,7 +71,7 @@ function addMark(x, y) {
 // CREATE SPRITE
 //**
 function createSprite(localPosition) {
-  const map = new THREE.TextureLoader().load('/textures/spark1.png');
+  const map = new THREE.TextureLoader().load('src/textures/spark1.png');
   var spriteMat = new THREE.SpriteMaterial({
     map: map,
     color: 'red',

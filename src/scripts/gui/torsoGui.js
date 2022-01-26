@@ -56,9 +56,3 @@ function initTorso(gui) {
   torsoFolder.add(torsoSettings, 'latExtAmount', -0.26, 0.26, 0.01).onChange(() => { torsoSettings.latExtTorso() }).name('Lateral Flexion');
   torsoFolder.add(torsoSettings, 'rotationAmount', -0.34, 0.34, 0.01).onChange(() => { torsoSettings.rotationTorso() }).name('Rotation');
 }
-
-/* if(nowMoving === '') {
-
-} else {
-  nowMoving='';
-} */

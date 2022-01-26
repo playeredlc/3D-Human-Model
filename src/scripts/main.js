@@ -10,7 +10,7 @@ scene.add(new THREE.AxesHelper(500))
 const light = new Light().getLight();
 scene.add(light);
 // model
-const myModel = new HumanModel3D('models/female-character-rigs.glb');
+const myModel = new HumanModel3D('src/models/female-character-rigs.glb');
 myModel.init(() => {
   console.log(myModel);
   loadGUI();
