@@ -29,13 +29,17 @@ I used [Blender](https://www.blender.org/) to apply the 3D Rigging, which is the
 #### Simulate human body movements
 * <i>Head / Torso</i>
 
-<img src="https://media4.giphy.com/media/XaeAp1MDFO8NofiCZs/giphy.gif?cid=790b7611a112e1c8509f8c5780e0fa8d40245f92a2b295df&rid=giphy.gif&ct=g" width="250" height="250" />
-<img src="https://media0.giphy.com/media/yzGDsqJkANylpsy388/giphy.gif?cid=790b76110b61e5f832552580aacbb4e6651679d342bad44b&rid=giphy.gif&ct=g" width="250" height="250" />
+<p float="left">
+	<img src="https://media4.giphy.com/media/XaeAp1MDFO8NofiCZs/giphy.gif?cid=790b7611a112e1c8509f8c5780e0fa8d40245f92a2b295df&rid=giphy.gif&ct=g" width="250" height="250" />
+	<img src="https://media0.giphy.com/media/yzGDsqJkANylpsy388/giphy.gif?cid=790b76110b61e5f832552580aacbb4e6651679d342bad44b&rid=giphy.gif&ct=g" width="250" height="250" />
+</p>
 
 * <i>Upper / Lower Limbs</i>
 
-<img src="https://media0.giphy.com/media/Pzm7zJYygB0nIbQBCL/giphy.gif?cid=790b761181195f6892bb81593b359439447a300d18d88907&rid=giphy.gif&ct=g" width="250" height="250" />
-<img src="https://media0.giphy.com/media/KoZ4LHm3KEW5oeZwhf/giphy.gif?cid=790b76119bc4cc69860634e94dc25ed47fe5944879419e84&rid=giphy.gif&ct=g" width="250" height="250" />
+<p float="left">
+	<img src="https://media0.giphy.com/media/Pzm7zJYygB0nIbQBCL/giphy.gif?cid=790b761181195f6892bb81593b359439447a300d18d88907&rid=giphy.gif&ct=g" width="250" height="250" />
+	<img src="https://media0.giphy.com/media/KoZ4LHm3KEW5oeZwhf/giphy.gif?cid=790b76119bc4cc69860634e94dc25ed47fe5944879419e84&rid=giphy.gif&ct=g" width="250" height="250" />
+</p>
 
 #### Attach and Save pain spot to model
 <img src="https://media2.giphy.com/media/mBcFeuoWafu1nRlwds/giphy.gif?cid=790b76119c5a783000fc754e5f9d2b3689a00d0601852cf2&rid=giphy.gif&ct=g" width="300" height="300" />
