@@ -10,6 +10,7 @@ function loadGUI () {
   gui.add(generalSettings, 'resetPosition').name('Reset Position');
 
   initHead(gui);
+  headAnimation.extFlex();
   initTorso(gui);
   initUpperLimb(gui);
   initLowerLimb(gui);
