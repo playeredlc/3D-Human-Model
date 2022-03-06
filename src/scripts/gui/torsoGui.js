@@ -15,14 +15,14 @@ const torsoSettings = {
     }
   },
 
-  latExtAmount: 0,
-  latExtTorso: () => {
-    if(nowMoving === 'latExtTorso') {
-      myModel.modelSkeleton.getBoneByName('spine001').rotation.z = torsoSettings.latExtAmount;
-      myModel.modelSkeleton.getBoneByName('spine002').rotation.z = torsoSettings.latExtAmount;
-      myModel.modelSkeleton.getBoneByName('spine003').rotation.z = torsoSettings.latExtAmount;
+  latFlexAmount: 0,
+  latFlexTorso: () => {
+    if(nowMoving === 'latFlexTorso') {
+      myModel.modelSkeleton.getBoneByName('spine001').rotation.z = torsoSettings.latFlexAmount;
+      myModel.modelSkeleton.getBoneByName('spine002').rotation.z = torsoSettings.latFlexAmount;
+      myModel.modelSkeleton.getBoneByName('spine003').rotation.z = torsoSettings.latFlexAmount;
     } else {
-      nowMoving = 'latExtTorso';
+      nowMoving = 'latFlexTorso';
       myModel.modelSkeleton.pose();
       myModel.modelSkeleton.getBoneByName('upper_armR').rotation.z = 2.35; // 135 deg
       myModel.modelSkeleton.getBoneByName('upper_armL').rotation.z = -2.35;
@@ -53,6 +53,6 @@ function initTorso(gui) {
   const torsoFolder = gui.addFolder('Torso');
   
   torsoFolder.add(torsoSettings, 'extFlexAmount', -1, 1, 0.01).onChange(() => { torsoSettings.extFlexTorso() }).name('Extension/Flexion');
-  torsoFolder.add(torsoSettings, 'latExtAmount', -0.26, 0.26, 0.01).onChange(() => { torsoSettings.latExtTorso() }).name('Lateral Flexion');
+  torsoFolder.add(torsoSettings, 'latFlexAmount', -0.26, 0.26, 0.01).onChange(() => { torsoSettings.latFlexTorso() }).name('Lateral Flexion');
   torsoFolder.add(torsoSettings, 'rotationAmount', -0.34, 0.34, 0.01).onChange(() => { torsoSettings.rotationTorso() }).name('Rotation');
 }
