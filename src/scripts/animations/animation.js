@@ -2,7 +2,8 @@ var animation = {
   
   ... animation,
 
-  move: (lowerBound, upperBound, stepSize, settingsObj, controllerProp, moveFunction) => {
+  move: (lowerBound, upperBound, settingsObj,
+    controllerProp, moveFunction, stepSize=0.02) => {
     
     const animateForward = () => {
 
