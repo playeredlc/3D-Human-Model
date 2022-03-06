@@ -33,6 +33,7 @@ function startViewingMode() {
     controls.autoRotate= true;
     discardUnsavedChanges();
     remakePainSpot();
+    startAnimation();
   }
 }
 function quitViewingMode() {
@@ -47,7 +48,6 @@ function quitViewingMode() {
 function remakePainSpot() {
   const selectedIndex = viewPainSpotSettings.painSpotList.indexOf(viewPainSpotSettings.selectPainSpot);
   const ps = savedPainSpots[selectedIndex];
-
   viewPainSpotSettings.actualIndex = selectedIndex;
   let sprite;
   

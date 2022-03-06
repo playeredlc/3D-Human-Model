@@ -58,3 +58,13 @@ const movements = {
     'L - Plantar/Dorsiflexion',
   ],
 }
+
+function startAnimation() {
+  const ps = savedPainSpots[viewPainSpotSettings.actualIndex][0];
+
+  const bodyPart = _.camelCase(ps.bodyPart);
+  const movement = _.camelCase(ps.movement);
+  
+  animation[bodyPart][movement]();
+
+};

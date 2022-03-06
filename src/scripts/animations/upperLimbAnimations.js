@@ -1,22 +1,22 @@
 var animation = {
- 
+
   ... animation,
-  
-  head: {
-    extensionFlexion: () => {
-      const lowerBound = 0;
-      const upperBound = 1.8;
+
+  upperLimb: {
+    rExtensionFlexion: () => {
+      const lowerBound = 0.33;
+      const upperBound = Math.PI;
       const stepSize = 0.02;
       
       animation.move(
         lowerBound,
         upperBound,
         stepSize,
-        headSettings,
+        upperSettings.right,
         'extFlexAmount',
-        headSettings.extFlexHead,
+        upperSettings.right.extFlexUpper
       );
-  
+
     },
   },
 };
