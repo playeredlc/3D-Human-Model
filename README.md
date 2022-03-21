@@ -42,7 +42,7 @@ I used [Blender](https://www.blender.org/) to apply the 3D Rigging, which is the
 </p>
 
 #### Attach and Save pain spot to model
-<img src="https://media2.giphy.com/media/mBcFeuoWafu1nRlwds/giphy.gif?cid=790b76119c5a783000fc754e5f9d2b3689a00d0601852cf2&rid=giphy.gif&ct=g" width="300" height="300" />
+<img src="https://media.giphy.com/media/QdVB8dUUiNsII2kAfa/giphy.gif" width="300" height="300" />
 
 
 ## Technologies
